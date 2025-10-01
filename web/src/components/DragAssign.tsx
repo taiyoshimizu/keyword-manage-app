@@ -1,5 +1,5 @@
 'use client';
-import { DndContext, useDroppable, useDraggable } from '@dnd-kit/core';
+import { DndContext, useDroppable, useDraggable, type DragEndEvent } from '@dnd-kit/core';
 import { api } from '@/lib/api';
 
 function Draggable({ id, children }: { id: string; children: React.ReactNode }) {
@@ -43,7 +43,7 @@ export default function DragAssign({
   pillarId: string;
   reload: () => void;
 }) {
-  const handleDragEnd = async (ev: any) => {
+const handleDragEnd = async (ev: DragEndEvent) => {
     const dragId = ev.active?.id as string | undefined;
     const overId = ev.over?.id as string | undefined;
     if (!dragId || !overId) return;
