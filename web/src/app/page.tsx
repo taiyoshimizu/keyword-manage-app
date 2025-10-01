@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api } from '@/lib/api';
 import type { Pillar } from '@/types';
+import CsvImport from '@/components/CsvImport';
+import CsvExport from '@/components/CsvExport';
 
 export default function Home() {
   const [pillars, setPillars] = useState<Pillar[]>([]);
