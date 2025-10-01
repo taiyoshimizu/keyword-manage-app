@@ -6,8 +6,17 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true
   },
   eslint: {
-    ignoreDuringBuuilds: true
+    ignoreDuringBuilds: true
   },
+  
+  async rewrites(){
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${process.env.API_ORIGIN}/api/:path*`,
+      },
+    ];
+  }, 
 };
 
 export default nextConfig;
