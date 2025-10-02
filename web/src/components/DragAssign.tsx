@@ -48,7 +48,7 @@ const handleDragEnd = async (ev: DragEndEvent) => {
     const overId = ev.over?.id as string | undefined;
     if (!dragId || !overId) return;
     if (overId === `pillar:${pillarId}`) {
-      await api.post('/api/keywords/bulk/move', { keywordIds: [dragId], pillarId });
+      await api.post('/keywords/bulk/move', { keywordIds: [dragId], pillarId });
       reload();
     }
   };

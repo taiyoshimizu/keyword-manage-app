@@ -14,21 +14,21 @@ export default function PillarPage() {
   const [unassigned, setUnassigned] = useState<Keyword[]>([]);
 
   const load = async () => {
-    const { data } = await api.get(`/api/pillars/${id}`);
+    const { data } = await api.get(`/pillars/${id}`);
     setPillar(data.pillar); setKeywords(data.keywords);
-    const all = await api.get('/api/keywords');
+    const all = await api.get('/keywords');
     setUnassigned(all.data.filter((k: Keyword) => !k.pillarId));
   };
   useEffect(() => { load(); }, [id]);
 
   const addKeyword = async () => {
     if (!term) return;
-    await api.post('/api/keywords', { term, status: 'todo', pillarId: id });
+    await api.post('/keywords', { term, status: 'todo', pillarId: id });
     setTerm(''); load();
   };
 
   const setStatus = async (kid: string, status: 'todo'|'writing'|'published') => {
-    await api.put(`/api/keywords/${kid}`, { status });
+    await api.put(`/keywords/${kid}`, { status });
     load();
   };
 

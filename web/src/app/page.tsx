@@ -12,14 +12,14 @@ export default function Home() {
   const [desc, setDesc] = useState('');
 
   const load = async () => {
-    const { data } = await api.get('/api/pillars');
+    const { data } = await api.get('/pillars');
     setPillars(data);
   };
   useEffect(() => { load(); }, []);
 
   const create = async () => {
     if (!title) return;
-    await api.post('/api/pillars', { title, description: desc });
+    await api.post('/pillars', { title, description: desc });
     setTitle(''); setDesc('');
     load();
   };
